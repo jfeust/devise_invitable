@@ -128,8 +128,14 @@ module Devise
         # Attributes must contain the user email, other attributes will be set in the record
         def _invite(attributes={}, invited_by=nil, &block)
           invitable = find_or_initialize_with_error_by(invite_key, attributes.delete(invite_key))
-          invitable.attributes = attributes
-          invitable.invited_by = invited_by
+           
+          if invitable.new_record? || invitable.invited_by == invited_by
+            invitable.attributes = attributes
+            invitable.invited_by = invited_by
+          else
+            invitable.errors.add(:email, "already invited by someone else")
+          end
+            
 
           invitable.valid? if self.validate_on_invite
           if invitable.new_record?

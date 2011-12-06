@@ -1,5 +1,10 @@
 = DeviseInvitable
 
+== jfeust Fork
+This fork adds a "single_invitor" option.  In the normal devise_invitable gem, if an invite is not yet accepted and a different user invites the same email address, that user becomes the "invited_by" value instead of the original.  In cases where invites are like currency, you want the first person to invite someone to always remain the invitor.
+
+CURRENTLY UNDER DEVELOPMENT. DON'T USE YET
+
 It adds support to devise[http://github.com/plataformatec/devise] for send invitations by email (it requires to be authenticated) and accept the invitation setting the password.
 
 DeviseInvitable currently only support Rails 3, if you want to use it with Rails 2.3 you must install version {0.2.3}[http://rubygems.org/gems/devise_invitable/versions/0.2.3]
